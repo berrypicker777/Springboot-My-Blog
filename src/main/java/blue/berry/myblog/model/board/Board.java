@@ -1,5 +1,6 @@
 package blue.berry.myblog.model.board;
 
+import blue.berry.myblog.model.user.User;
 import lombok.*;
 
 import javax.persistence.*;
