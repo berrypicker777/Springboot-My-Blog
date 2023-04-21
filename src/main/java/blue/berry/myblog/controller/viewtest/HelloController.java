@@ -1,4 +1,4 @@
-package blue.berry.myblog.controller;
+package blue.berry.myblog.controller.viewtest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
