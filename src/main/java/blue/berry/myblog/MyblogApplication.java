@@ -6,11 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class MyblogApplication {
 
+    @Profile("dev") // dev profile에서만 작동
     @Bean
     CommandLineRunner init(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         return args -> {
