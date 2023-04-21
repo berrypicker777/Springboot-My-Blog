@@ -1,11 +1,14 @@
 package blue.berry.myblog.config;
 
+import blue.berry.myblog.core.auth.MyUserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Configuration
@@ -30,6 +33,12 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .successHandler((request, response, authentication) -> {
                     log.debug("디버그 : 로그인 성공");
+
+                    // view에서 사용하기 위한 세션 생성
+                    MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
+                    HttpSession session = request.getSession();
+                    session.setAttribute("sessionUser", myUserDetails.getUser());
+
                     response.sendRedirect("/");
                 })
                 .failureHandler((request, response, exception) -> {
