@@ -1,6 +1,7 @@
 package blue.berry.myblog.service;
 
 import blue.berry.myblog.core.exception.ssr.Exception400;
+import blue.berry.myblog.core.util.MyParseUtil;
 import blue.berry.myblog.dto.board.BoardRequest;
 import blue.berry.myblog.model.board.Board;
 import blue.berry.myblog.model.board.BoardQueryRepository;
@@ -28,8 +29,11 @@ public class BoardService {
                     () -> new RuntimeException("유저를 찾을 수 없습니다.")
             );
 
-            // 2. 게시글 쓰기
-            boardRepository.save(saveInDTO.toEntity(userPS));
+            // 2. 썸네일 만들기
+            String thumbnail = MyParseUtil.getThumbnail(saveInDTO.getContent());
+
+            // 3. 게시글 쓰기
+            boardRepository.save(saveInDTO.toEntity(userPS, thumbnail));
         } catch (Exception e) {
             throw new RuntimeException("글쓰기 실패 : " + e.getMessage());
         }

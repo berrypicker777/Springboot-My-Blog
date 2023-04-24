@@ -8,7 +8,7 @@
         <c:forEach items="${boardPG.content}" var="board">
             <%-- 글 아이템 시작 --%>
             <div class="card col-lg-3 pt-2">
-                <img class="card-img-top" style="height: 250px;" src="/images/dora.png" alt="Card image">
+                <img class="card-img-top" style="height: 250px;" src="${board.thumbnail}" alt="Card image">
                 <hr/>
                 <div class="card-body">
                     <div>작성자 : ${board.user.username}</div>
@@ -21,7 +21,8 @@
     </div>
 
     <ul class="pagination mt-3 d-flex justify-content-center">
-        <li class="page-item ${boardPG.first ? "disabled" : ""}"><a class="page-link" href="/?page=${boardPG.number -1}">Previous</a></li>
+        <li class="page-item ${boardPG.first ? "disabled" : ""}"><a class="page-link"
+                                                                    href="/?page=${boardPG.number -1}">Previous</a></li>
         <li class="page-item ${boardPG.last ? "disabled" : ""}"><a class="page-link" href="/?page=${boardPG.number +1}">Next</a>
         </li>
     </ul>
