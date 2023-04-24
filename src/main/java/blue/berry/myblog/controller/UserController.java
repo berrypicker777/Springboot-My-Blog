@@ -16,7 +16,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(UserRequest.JoinInDTO joinInDTO) {
         userService.회원가입(joinInDTO);
-        return "redirect/loginForm"; // req 302
+        return "redirect:/loginForm"; // req 302
     }
 
     @GetMapping("/joinForm")
